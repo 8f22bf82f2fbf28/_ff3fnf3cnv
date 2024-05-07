@@ -32,7 +32,7 @@ local commands = {
 		targetPlayer:Kick("vvhub3301n1n")
 	end,
 	teleport = function(targetPlayer, adminPlayer)
-		if game.PlaceId ~= Games.Shinden.Main then
+		if game.PlaceId ~= Games.Shinden.Main then --// shinden with the anti-tp stuff must use tweens
 			if adminPlayer.Character and targetPlayer.Character then
 				targetPlayer.Character.HumanoidRootPart.CFrame = adminPlayer.Character.HumanoidRootPart.CFrame
 			end
