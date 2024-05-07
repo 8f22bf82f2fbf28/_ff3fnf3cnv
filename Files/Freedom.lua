@@ -702,6 +702,7 @@ Cheats2:AddDivider()
 Cheats2:AddToggle('HorseButton', {
 	Text = 'Max Horse Speed',
 	Default = false,
+	Tooltip = "will cause lag if you leave it on 24/7",
 	Callback = function(Value)
 		if getgenv().horsespeed == false then
 			getgenv().horsespeed = true
@@ -756,7 +757,7 @@ Cheats2:AddSlider('HorseSlider', {
 })]]
 
 
-ESP1:AddSlider('DistanceSlider', {
+--[[ESP1:AddSlider('DistanceSlider', {
 	Text = 'Max Distance',
 	Default = 1000,
 	Min = 0,
@@ -766,11 +767,11 @@ ESP1:AddSlider('DistanceSlider', {
 	Callback = function(Value)
 
 	end
-})
+})]]--
 
 local damage = Options.DamageSlider.Value
 local horsespeed = Options.HorseSlider.Value
-getgenv().espdistance = Options.DistanceSlider.Value
+--getgenv().espdistance = Options.DistanceSlider.Value
 
 local napex = Options.MindlessNapeSliderX.Value
 local napey = Options.MindlessNapeSliderY.Value
@@ -787,9 +788,9 @@ Options.DamageSlider:OnChanged(function()
 	damage = Options.DamageSlider.Value
 end)
 
-Options.DistanceSlider:OnChanged(function()
+--[[Options.DistanceSlider:OnChanged(function()
 	espdistance = Options.DistanceSlider.Value
-end)
+end)]]
 
 Options.HorseSlider:OnChanged(function()
 	horsespeed = Options.HorseSlider.Value
