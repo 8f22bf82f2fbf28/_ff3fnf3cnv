@@ -94,7 +94,7 @@ function onCharacterAdded(character)
 		end
 
 		if getgenv().Skills == true then
-			for _, v in pairs(Player.PlayerGui.SkillsGui:GetChildren()) do
+			for _, v in pairs(Player.PlayerGui:WaitForChild("SkillsGui"):GetChildren()) do
 				v.Enabled = true
 			end
 			while task.wait(2) and getgenv().Skills == true do
@@ -322,33 +322,33 @@ Cheats:AddToggle('Unlock Skills', {
 	Callback = function(Value)
 		if getgenv().Skills == false then
 			getgenv().Skills = true
-			for _, v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.SkillsGui:GetChildren()) do
+			for _, v in pairs(Player.PlayerGui:WaitForChild("SkillsGui"):GetChildren()) do
 				v.Enabled = true
 			end
 			while task.wait(2) and getgenv().Skills do
-				Character:WaitForChild("Humanoid").Gear.Skills.Dodge.Value = true
-				Character:WaitForChild("Humanoid").Gear.Skills.Impulse.Value = true
-				Character:WaitForChild("Humanoid").Gear.Skills.HandCut.Value = true
-				Character:WaitForChild("Humanoid").Gear.Skills.HandCutMk2.Value = true
-				Character:WaitForChild("Humanoid").Gear.Skills.SuperJump.Value = true
-				Character:WaitForChild("Humanoid").Gear.Skills.BladeThrow.Value = true
-				Character:WaitForChild("Humanoid").Gear.Skills.Counter.Value = true
+				Character:WaitForChild("Humanoid"):WaitForChild("Gear").Skills.Dodge.Value = true
+				Character:WaitForChild("Humanoid"):WaitForChild("Gear").Skills.Impulse.Value = true
+				Character:WaitForChild("Humanoid"):WaitForChild("Gear").Skills.HandCut.Value = true
+				Character:WaitForChild("Humanoid"):WaitForChild("Gear").Skills.HandCutMk2.Value = true
+				Character:WaitForChild("Humanoid"):WaitForChild("Gear").Skills.SuperJump.Value = true
+				Character:WaitForChild("Humanoid"):WaitForChild("Gear").Skills.BladeThrow.Value = true
+				Character:WaitForChild("Humanoid"):WaitForChild("Gear").Skills.Counter.Value = true
 
 				Character:WaitForChild("Humanoid").Upgrades.AttackSpeed.Value = 0.2
 				Character:WaitForChild("Humanoid").Upgrades.HooksRange.Value = 160
 			end
 		elseif getgenv().Skills == true then
 			getgenv().Skills = false
-			for _, v in pairs(Player.PlayerGui.SkillsGui:GetChildren()) do
+			for _, v in pairs(Player.PlayerGui:WaitForChild("SkillsGui"):GetChildren()) do
 				v.Enabled = false
 			end
-			Character:WaitForChild("Humanoid").Gear.Skills.Dodge.Value = false
-			Character:WaitForChild("Humanoid").Gear.Skills.Impulse.Value = false
-			Character:WaitForChild("Humanoid").Gear.Skills.HandCut.Value = false
-			Character:WaitForChild("Humanoid").Gear.Skills.HandCutMk2.Value = false
-			Character:WaitForChild("Humanoid").Gear.Skills.SuperJump.Value = false
-			Character:WaitForChild("Humanoid").Gear.Skills.BladeThrow.Value = false
-			Character:WaitForChild("Humanoid").Gear.Skills.Counter.Value = false
+			Character:WaitForChild("Humanoid"):WaitForChild("Gear").Skills.Dodge.Value = false
+			Character:WaitForChild("Humanoid"):WaitForChild("Gear").Skills.Impulse.Value = false
+			Character:WaitForChild("Humanoid"):WaitForChild("Gear").Skills.HandCut.Value = false
+			Character:WaitForChild("Humanoid"):WaitForChild("Gear").Skills.HandCutMk2.Value = false
+			Character:WaitForChild("Humanoid"):WaitForChild("Gear").Skills.SuperJump.Value = false
+			Character:WaitForChild("Humanoid"):WaitForChild("Gear").Skills.BladeThrow.Value = false
+			Character:WaitForChild("Humanoid"):WaitForChild("Gear").Skills.Counter.Value = false
 		end
 	end
 })
@@ -360,7 +360,7 @@ Cheats:AddToggle('NoCooldown', {
 		if getgenv().NoCooldown == false then
 			getgenv().NoCooldown = true
 			while task.wait() and getgenv().NoCooldown do
-				for _, Move in pairs(Character:WaitForChild("Gear").SkillsSpamLimit:GetChildren()) do
+				for _, Move in pairs(Character:WaitForChild("Humanoid"):WaitForChild("Gear").SkillsSpamLimit:GetChildren()) do
 					Move.Value = -1
 				end
 
