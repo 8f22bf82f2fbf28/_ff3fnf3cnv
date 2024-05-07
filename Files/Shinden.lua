@@ -158,6 +158,14 @@ Cheats:AddSlider('SpeedSlider', {
 	end
 })
 
+Cheats2:AddButton({
+	Text = 'Rejoin Same Server',
+	Func = function()
+		TeleportService:Teleport(game.PlaceId, Player, game.JobId)
+	end,
+	DoubleClick = false,
+})
+
 Cheats2:AddToggle('AutoPushups', {
 	Text = 'Auto Pushup Training',
 	Default = false,
