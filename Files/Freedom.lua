@@ -24,7 +24,7 @@ local Character = Player.Character or Player.CharacterAdded:Wait()
 
 function onCharacterAdded(character)
 	Character = character
-	
+
 	if getgenv().InfSStamina == true then
 		if Character:FindFirstChild("Shifter") then
 			local Stamina = Character:WaitForChild("Humanoid").Stamina
@@ -110,7 +110,7 @@ function onCharacterAdded(character)
 
 	if getgenv().NoCooldown == true then
 		while task.wait() and getgenv().NoCooldown do
-			for _, Move in pairs(Character:WaitForChild("Gear").SkillsSpamLimit:GetChildren()) do
+			for _, Move in pairs(Character:WaitForChild("Humanoid"):WaitForChild("Gear").SkillsSpamLimit:GetChildren()) do
 				Move.Value = -1
 			end
 
