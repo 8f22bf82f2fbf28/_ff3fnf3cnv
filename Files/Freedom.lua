@@ -135,7 +135,7 @@ function onCharacterAdded(character)
 	end
 
 	if getgenv().InfiniteGas == true then
-		local Gas = character:WaitForChild("Humanoid"):WaitForChild("Gear").Gas
+		local Gas = Character:WaitForChild("Humanoid"):WaitForChild("Gear").Gas
 		local frhook;
 		frhook = hookmetamethod(game,'__index',function(self,v)
 			if self == Gas and v == "Value" and getgenv().InfiniteGas == true then
@@ -146,7 +146,7 @@ function onCharacterAdded(character)
 	end
 
 	if getgenv().InfiniteBlades == true then
-		local Blades = character:WaitForChild("Humanoid"):WaitForChild("Gear").Blades
+		local Blades = Character:WaitForChild("Humanoid"):WaitForChild("Gear").Blades
 		local bbladehook;
 		bbladehook = hookmetamethod(game,'__index',function(self,v)
 			if self == Blades and v == "Value" and getgenv().InfiniteBlades == true then
