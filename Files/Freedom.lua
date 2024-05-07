@@ -312,23 +312,6 @@ Cheats:AddToggle('Hood', {
 	end
 })
 
-Cheats:AddToggle('SuperJumpAir', {
-	Text = 'Super Jump In Air',
-	Default = false,
-	Tooltip = "lets you super jump in air",
-	Callback = function(Value)
-		if getgenv().SuperJumpAir == false then
-			getgenv().SuperJumpAir = true
-			local material = Character:WaitForChild("Humanoid").FloorMaterial
-			while task.wait() and getgenv().SuperJumpAir do
-				material = Enum.Material.Air
-			end
-		elseif getgenv().SuperJumpAir == true then
-			getgenv().SuperJumpAir = false
-		end
-	end
-})
-
 Cheats:AddToggle('Unlock Skills', {
 	Text = 'Unlock Skills',
 	Default = false,
