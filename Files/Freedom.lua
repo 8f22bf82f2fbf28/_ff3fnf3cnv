@@ -24,139 +24,136 @@ local Character = Player.Character or Player.CharacterAdded:Wait()
 
 function onCharacterAdded(character)
 	Character = character
-
-	if game.PlaceId == Games.FreedomWar.Campaign or Games.FreedomWar.Practice then
-
-		if getgenv().InfSStamina == true then
-			if Character:FindFirstChild("Shifter") then
-				local Stamina = Character:WaitForChild("Humanoid").Stamina
-				local StammHook;
-				StammHook = hookmetamethod(game,'__index',function(self,v)
-					if self == Stamina and v == "Value" and getgenv().InfSStamina == true then
-						return 2400
-					end
-					return StammHook(self,v)
-				end)
-			end
-		end
-
-		if getgenv().ShifterNoCooldown == true then
-			for _, Move in pairs(Player.PlayerGui:WaitForChild("ShiftersGui"):GetDescendants()) do
-				if Move.Name == "HeavyAttack" then
-					Move.Cooldown.Value = 300
-				elseif Move.Name == "Roar" then
-					Move.Cooldown.Value = 500
+	
+	if getgenv().InfSStamina == true then
+		if Character:FindFirstChild("Shifter") then
+			local Stamina = Character:WaitForChild("Humanoid").Stamina
+			local StammHook;
+			StammHook = hookmetamethod(game,'__index',function(self,v)
+				if self == Stamina and v == "Value" and getgenv().InfSStamina == true then
+					return 2400
 				end
-			end
-		end
-
-		if getgenv().TitanDetection == true then
-			Character:WaitForChild("TitanDetector").Enabled = false
-			local ttitanhook;
-			ttitanhook = hookmetamethod(game, '__namecall', function(self, ...)
-				local args = {...}
-				local call_type = getnamecallmethod();
-				if call_type == 'FireServer' and tostring(self) == 'TitanTouchedEvent' and getgenv().TitanDetection then 
-					args[1] = workspace.Camera:WaitForChild("CameraPart")
-					return ttitanhook(self, unpack(args))
-				else
-					return ttitanhook(self, ...)
-				end
+				return StammHook(self,v)
 			end)
 		end
+	end
 
-		if getgenv().InfiniteTS == true then
-			local function returnrefill()
-				if game.PlaceId == Games.FreedomWar.Practice then
-					return workspace:WaitForChild("PracticeMap"):FindFirstChild("TSRefill"):FindFirstChild("Main")
-				elseif game.PlaceId == Games.FreedomWar.Campaign then
-					return workspace:WaitForChild("OnGameHorses"):WaitForChild("HorseCarriage"):WaitForChild("Carriage"):WaitForChild("CarriageRefill"):WaitForChild("PromptPart")
-				end
+	if getgenv().ShifterNoCooldown == true then
+		for _, Move in pairs(Player.PlayerGui:WaitForChild("ShiftersGui"):GetDescendants()) do
+			if Move.Name == "HeavyAttack" then
+				Move.Cooldown.Value = 300
+			elseif Move.Name == "Roar" then
+				Move.Cooldown.Value = 500
 			end
-
-			RunService.RenderStepped:Connect(function()
-				if Character:WaitForChild("Gear").Config.TS.Value == true then
-					if Character:WaitForChild("Humanoid").Gear.TS.Value == 0 and getgenv().InfiniteTS then
-						local args = {
-							[1] = "TS",
-							[2] = returnrefill()
-						}
-
-						Character:WaitForChild("Gear").Events.RefillEventServer:FireServer(unpack(args))
-					end
-				end
-			end)
 		end
+	end
 
-		if getgenv().Skills == true then
-			for _, v in pairs(Player.PlayerGui:WaitForChild("SkillsGui"):GetChildren()) do
-				v.Enabled = true
+	if getgenv().TitanDetection == true then
+		Character:WaitForChild("TitanDetector").Enabled = false
+		local ttitanhook;
+		ttitanhook = hookmetamethod(game, '__namecall', function(self, ...)
+			local args = {...}
+			local call_type = getnamecallmethod();
+			if call_type == 'FireServer' and tostring(self) == 'TitanTouchedEvent' and getgenv().TitanDetection then 
+				args[1] = workspace.Camera:WaitForChild("CameraPart")
+				return ttitanhook(self, unpack(args))
+			else
+				return ttitanhook(self, ...)
 			end
-			while task.wait(2) and getgenv().Skills == true do
-				Character:WaitForChild("Humanoid"):WaitForChild("Gear").Skills.Dodge.Value = true
-				Character:WaitForChild("Humanoid"):WaitForChild("Gear").Skills.Impulse.Value = true
-				Character:WaitForChild("Humanoid"):WaitForChild("Gear").Skills.HandCut.Value = true
-				Character:WaitForChild("Humanoid"):WaitForChild("Gear").Skills.HandCutMk2.Value = true
-				Character:WaitForChild("Humanoid"):WaitForChild("Gear").Skills.SuperJump.Value = true
-				Character:WaitForChild("Humanoid"):WaitForChild("Gear").Skills.BladeThrow.Value = true
-				Character:WaitForChild("Humanoid"):WaitForChild("Gear").Skills.Counter.Value = true
+		end)
+	end
 
-				Character:WaitForChild("Humanoid"):WaitForChild("Gear").Upgrades.AttackSpeed.Value = 0.2
-				Character:WaitForChild("Humanoid"):WaitForChild("Gear").Upgrades.HooksRange.Value = 160
+	if getgenv().InfiniteTS == true then
+		local function returnrefill()
+			if game.PlaceId == Games.FreedomWar.Practice then
+				return workspace:WaitForChild("PracticeMap"):FindFirstChild("TSRefill"):FindFirstChild("Main")
+			elseif game.PlaceId == Games.FreedomWar.Campaign then
+				return workspace:WaitForChild("OnGameHorses"):WaitForChild("HorseCarriage"):WaitForChild("Carriage"):WaitForChild("CarriageRefill"):WaitForChild("PromptPart")
 			end
 		end
 
-		if getgenv().Hood == true then
-			Player.PlayerGui:WaitForChild("LowHealthGui").LoseHoodEvent:Destroy()
-		end
+		RunService.RenderStepped:Connect(function()
+			if Character:WaitForChild("Gear").Config.TS.Value == true then
+				if Character:WaitForChild("Humanoid").Gear.TS.Value == 0 and getgenv().InfiniteTS then
+					local args = {
+						[1] = "TS",
+						[2] = returnrefill()
+					}
 
-		if getgenv().NoCooldown == true then
-			while task.wait() and getgenv().NoCooldown do
-				for _, Move in pairs(Character:WaitForChild("Gear").SkillsSpamLimit:GetChildren()) do
-					Move.Value = -1
+					Character:WaitForChild("Gear").Events.RefillEventServer:FireServer(unpack(args))
 				end
+			end
+		end)
+	end
 
-				for _, Skill in pairs(Player.PlayerGui:WaitForChild("SkillsGui"):GetChildren()) do
-					if Skill.Name == "Impulse" then
-						Skill.Cooldown.Value = 100
-					elseif Skill.Name == "Dodge" then
-						Skill.Cooldown.Value = 25
-					elseif Skill.Name == "HandCut" then
-						Skill.Cooldown.Value = 3000
-					elseif Skill.Name == "HandCutMk2" then
-						Skill.Cooldown.Value = 3000
-					elseif Skill.Name == "SuperJump" then
-						Skill.Cooldown.Value = 150
-					elseif Skill.Name == "BladeThrow" then
-						Skill.Cooldown.Value = 100
-					elseif Skill.Name == "Counter" then
-						Skill.Cooldown.Value = 2000
-					end
+	if getgenv().Skills == true then
+		for _, v in pairs(Player.PlayerGui:WaitForChild("SkillsGui"):GetChildren()) do
+			v.Enabled = true
+		end
+		while task.wait(2) and getgenv().Skills == true do
+			Character:WaitForChild("Humanoid").Gear.Skills.Dodge.Value = true
+			Character:WaitForChild("Humanoid").Gear.Skills.Impulse.Value = true
+			Character:WaitForChild("Humanoid").Gear.Skills.HandCut.Value = true
+			Character:WaitForChild("Humanoid").Gear.Skills.HandCutMk2.Value = true
+			Character:WaitForChild("Humanoid").Gear.Skills.SuperJump.Value = true
+			Character:WaitForChild("Humanoid").Gear.Skills.BladeThrow.Value = true
+			Character:WaitForChild("Humanoid").Gear.Skills.Counter.Value = true
+
+			Character:WaitForChild("Humanoid").Gear.Upgrades.AttackSpeed.Value = 0.2
+			Character:WaitForChild("Humanoid").Gear.Upgrades.HooksRange.Value = 160
+		end
+	end
+
+	if getgenv().Hood == true then
+		Player.PlayerGui:WaitForChild("LowHealthGui").LoseHoodEvent:Destroy()
+	end
+
+	if getgenv().NoCooldown == true then
+		while task.wait() and getgenv().NoCooldown do
+			for _, Move in pairs(Character:WaitForChild("Gear").SkillsSpamLimit:GetChildren()) do
+				Move.Value = -1
+			end
+
+			for _, Skill in pairs(Player.PlayerGui:WaitForChild("SkillsGui"):GetChildren()) do
+				if Skill.Name == "Impulse" then
+					Skill.Cooldown.Value = 100
+				elseif Skill.Name == "Dodge" then
+					Skill.Cooldown.Value = 25
+				elseif Skill.Name == "HandCut" then
+					Skill.Cooldown.Value = 3000
+				elseif Skill.Name == "HandCutMk2" then
+					Skill.Cooldown.Value = 3000
+				elseif Skill.Name == "SuperJump" then
+					Skill.Cooldown.Value = 150
+				elseif Skill.Name == "BladeThrow" then
+					Skill.Cooldown.Value = 100
+				elseif Skill.Name == "Counter" then
+					Skill.Cooldown.Value = 2000
 				end
 			end
 		end
+	end
 
-		if getgenv().InfiniteGas == true then
-			local Gas = Character:WaitForChild("Humanoid"):WaitForChild("Gear").Gas
-			local frhook;
-			frhook = hookmetamethod(game,'__index',function(self,v)
-				if self == Gas and v == "Value" and getgenv().InfiniteGas == true then
-					return 2000
-				end
-				return frhook(self,v)
-			end)
-		end
+	if getgenv().InfiniteGas == true then
+		local Gas = Character:WaitForChild("Humanoid"):WaitForChild("Gear").Gas
+		local frhook;
+		frhook = hookmetamethod(game,'__index',function(self,v)
+			if self == Gas and v == "Value" and getgenv().InfiniteGas == true then
+				return 2000
+			end
+			return frhook(self,v)
+		end)
+	end
 
-		if getgenv().InfiniteBlades == true then
-			local Blades = Character:WaitForChild("Humanoid"):WaitForChild("Gear").Blades
-			local bbladehook;
-			bbladehook = hookmetamethod(game,'__index',function(self,v)
-				if self == Blades and v == "Value" and getgenv().InfiniteBlades == true then
-					return 8
-				end
-				return bbladehook(self,v)
-			end)
-		end
+	if getgenv().InfiniteBlades == true then
+		local Blades = Character:WaitForChild("Humanoid"):WaitForChild("Gear").Blades
+		local bbladehook;
+		bbladehook = hookmetamethod(game,'__index',function(self,v)
+			if self == Blades and v == "Value" and getgenv().InfiniteBlades == true then
+				return 8
+			end
+			return bbladehook(self,v)
+		end)
 	end
 end
 
@@ -164,8 +161,7 @@ Player.CharacterAdded:Connect(onCharacterAdded)
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Pixeluted/adoniscries/main/Source.lua", true))()
 
-
-task.wait(1)
+task.wait(0.1)
 
 local Window = Library:CreateWindow({
 	Title = tostring("Tear - " .. game.PlaceId),
@@ -177,7 +173,7 @@ local Window = Library:CreateWindow({
 
 local Tabs = {
 	Main = Window:AddTab('Main'),
-	ESP = Window:AddTab('ESP'),
+	--ESP = Window:AddTab('ESP'),
 	['UI Settings'] = Window:AddTab('UI Settings'),
 }
 
@@ -330,8 +326,8 @@ Cheats:AddToggle('Unlock Skills', {
 				Character:WaitForChild("Humanoid"):WaitForChild("Gear").Skills.BladeThrow.Value = true
 				Character:WaitForChild("Humanoid"):WaitForChild("Gear").Skills.Counter.Value = true
 
-				Character:WaitForChild("Humanoid"):WaitForChild("Gear").Upgrades.AttackSpeed.Value = 0.2
-				Character:WaitForChild("Humanoid"):WaitForChild("Gear").Upgrades.HooksRange.Value = 160
+				Character:WaitForChild("Humanoid").Upgrades.AttackSpeed.Value = 0.2
+				Character:WaitForChild("Humanoid").Upgrades.HooksRange.Value = 160
 			end
 		elseif getgenv().Skills == true then
 			getgenv().Skills = false
@@ -826,15 +822,15 @@ Options.ShifterNapeTransparency:OnChanged(function()
 	shiftertransparency = Options.ShifterNapeTransparency.Value
 end)
 
-local metahook;
-metahook = hookmetamethod(game, '__namecall', function(self, ...)
+local hhook;
+hhook = hookmetamethod(game, '__namecall', function(self, ...)
 	local args = {...}
 	local call_type = getnamecallmethod();
 	if call_type == 'FireServer' and tostring(self) == 'HitEvent' and getgenv().DamageSpoof then 
 		args[2] = damage
-		return metahook(self, unpack(args))
+		return hhook(self, unpack(args))
 	else
-		return metahook(self, ...)
+		return hhook(self, ...)
 	end
 end)
 
