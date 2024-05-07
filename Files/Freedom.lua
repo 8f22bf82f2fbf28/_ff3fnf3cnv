@@ -199,6 +199,7 @@ getgenv().PlrESP = false
 getgenv().AntiHook = false
 getgenv().AutoHandcut = false
 getgenv().Clothes = false
+getgenv().SuperJumpAir = false
 getgenv().TitanESP = false
 getgenv().ShifterESP = false
 
@@ -307,6 +308,27 @@ Cheats:AddToggle('Hood', {
 			getgenv().Hood = false
 			local HoodRemote = Instance.new("RemoteEvent", Player.PlayerGui.LowHealthGui)
 			HoodRemote.Name = "LoseHoodEvent"
+		end
+	end
+})
+
+Cheats:AddToggle('SuperJumpAir', {
+	Text = 'Super Jump In Air',
+	Default = false,
+	Tooltip = "lets you super jump in air",
+	Callback = function(Value)
+		if getgenv().SuperJumpAir == false then
+			getgenv().SuperJumpAir = true
+			local material = Character:WaitForChild("Humanoid")
+			local airhook;
+			airhook = hookmetamethod(game,'__index',function(self,v)
+				if self == material and v == "FloorMaterial" and getgenv().SuperJumpAir == true then
+					return "Air"
+				end
+				return airhook(self,v)
+			end)
+		elseif getgenv().SuperJumpAir == true then
+			getgenv().SuperJumpAir = false
 		end
 	end
 })
