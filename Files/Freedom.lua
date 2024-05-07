@@ -330,8 +330,8 @@ Cheats:AddToggle('Unlock Skills', {
 				Character:WaitForChild("Humanoid"):WaitForChild("Gear").Skills.BladeThrow.Value = true
 				Character:WaitForChild("Humanoid"):WaitForChild("Gear").Skills.Counter.Value = true
 
-				Character:WaitForChild("Humanoid").Upgrades.AttackSpeed.Value = 0.2
-				Character:WaitForChild("Humanoid").Upgrades.HooksRange.Value = 160
+				Character:WaitForChild("Humanoid"):WaitForChild("Gear").Upgrades.AttackSpeed.Value = 0.2
+				Character:WaitForChild("Humanoid"):WaitForChild("Gear").Upgrades.HooksRange.Value = 160
 			end
 		elseif getgenv().Skills == true then
 			getgenv().Skills = false
