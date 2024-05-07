@@ -26,8 +26,8 @@ function onCharacterAdded(character)
 	Character = character
 	
 	if getgenv().InfSStamina == true then
-		if character:FindFirstChild("Shifter") then
-			local Stamina = character:WaitForChild("Humanoid").Stamina
+		if Character:FindFirstChild("Shifter") then
+			local Stamina = Character:WaitForChild("Humanoid").Stamina
 			local StammHook;
 			StammHook = hookmetamethod(game,'__index',function(self,v)
 				if self == Stamina and v == "Value" and getgenv().InfSStamina == true then
@@ -73,14 +73,14 @@ function onCharacterAdded(character)
 		end
 
 		RunService.RenderStepped:Connect(function()
-			if character:WaitForChild("Gear").Config.TS.Value == true then
-				if character:WaitForChild("Humanoid").Gear.TS.Value == 0 and getgenv().InfiniteTS then
+			if Character:WaitForChild("Gear").Config.TS.Value == true then
+				if Character:WaitForChild("Humanoid").Gear.TS.Value == 0 and getgenv().InfiniteTS then
 					local args = {
 						[1] = "TS",
 						[2] = returnrefill()
 					}
 
-					character:WaitForChild("Gear").Events.RefillEventServer:FireServer(unpack(args))
+					Character:WaitForChild("Gear").Events.RefillEventServer:FireServer(unpack(args))
 				end
 			end
 		end)
@@ -91,16 +91,16 @@ function onCharacterAdded(character)
 			v.Enabled = true
 		end
 		while task.wait(2) and getgenv().Skills == true do
-			character:WaitForChild("Humanoid").Gear.Skills.Dodge.Value = true
-			character:WaitForChild("Humanoid").Gear.Skills.Impulse.Value = true
-			character:WaitForChild("Humanoid").Gear.Skills.HandCut.Value = true
-			character:WaitForChild("Humanoid").Gear.Skills.HandCutMk2.Value = true
-			character:WaitForChild("Humanoid").Gear.Skills.SuperJump.Value = true
-			character:WaitForChild("Humanoid").Gear.Skills.BladeThrow.Value = true
-			character:WaitForChild("Humanoid").Gear.Skills.Counter.Value = true
+			Character:WaitForChild("Humanoid").Gear.Skills.Dodge.Value = true
+			Character:WaitForChild("Humanoid").Gear.Skills.Impulse.Value = true
+			Character:WaitForChild("Humanoid").Gear.Skills.HandCut.Value = true
+			Character:WaitForChild("Humanoid").Gear.Skills.HandCutMk2.Value = true
+			Character:WaitForChild("Humanoid").Gear.Skills.SuperJump.Value = true
+			Character:WaitForChild("Humanoid").Gear.Skills.BladeThrow.Value = true
+			Character:WaitForChild("Humanoid").Gear.Skills.Counter.Value = true
 
-			character:WaitForChild("Humanoid").Gear.Upgrades.AttackSpeed.Value = 0.2
-			character:WaitForChild("Humanoid").Gear.Upgrades.HooksRange.Value = 160
+			Character:WaitForChild("Humanoid").Gear.Upgrades.AttackSpeed.Value = 0.2
+			Character:WaitForChild("Humanoid").Gear.Upgrades.HooksRange.Value = 160
 		end
 	end
 
@@ -110,7 +110,7 @@ function onCharacterAdded(character)
 
 	if getgenv().NoCooldown == true then
 		while task.wait() and getgenv().NoCooldown do
-			for _, Move in pairs(character:WaitForChild("Gear").SkillsSpamLimit:GetChildren()) do
+			for _, Move in pairs(Character:WaitForChild("Gear").SkillsSpamLimit:GetChildren()) do
 				Move.Value = -1
 			end
 
@@ -317,7 +317,7 @@ Cheats:AddToggle('Unlock Skills', {
 			for _, v in pairs(Player.PlayerGui:WaitForChild("SkillsGui"):GetChildren()) do
 				v.Enabled = true
 			end
-			while task.wait(2) and getgenv().Skills do
+			while task.wait(1) and getgenv().Skills do
 				Character:WaitForChild("Humanoid"):WaitForChild("Gear").Skills.Dodge.Value = true
 				Character:WaitForChild("Humanoid"):WaitForChild("Gear").Skills.Impulse.Value = true
 				Character:WaitForChild("Humanoid"):WaitForChild("Gear").Skills.HandCut.Value = true
@@ -326,8 +326,8 @@ Cheats:AddToggle('Unlock Skills', {
 				Character:WaitForChild("Humanoid"):WaitForChild("Gear").Skills.BladeThrow.Value = true
 				Character:WaitForChild("Humanoid"):WaitForChild("Gear").Skills.Counter.Value = true
 
-				Character:WaitForChild("Humanoid").Upgrades.AttackSpeed.Value = 0.2
-				Character:WaitForChild("Humanoid").Upgrades.HooksRange.Value = 160
+				Character:WaitForChild("Humanoid"):WaitForChild("Gear").Upgrades.AttackSpeed.Value = 0.2
+				Character:WaitForChild("Humanoid"):WaitForChild("Gear").Upgrades.HooksRange.Value = 160
 			end
 		elseif getgenv().Skills == true then
 			getgenv().Skills = false
@@ -516,6 +516,18 @@ Cheats:AddButton({
 	DoubleClick = false,
 })
 
+Cheats:AddButton({
+	Text = 'Reset God Mode',
+	Func = function()
+		local Granada = game:GetService("ReplicatedStorage").BuyEvent:FireServer('Granada',100)
+		
+		repeat task.wait() until Player.Backpack:FindFirstChild("Granada")
+		
+		Player.Backpack:WaitForChild('Granada').Eat:FireServer()
+	end,
+	DoubleClick = false,
+})
+
 Cheats:AddLabel('Regenerate Health'):AddKeyPicker('KeyPicker', {
 	Default = 'U',
 	SyncToggleState = false,
@@ -694,7 +706,6 @@ Cheats2:AddDivider()
 Cheats2:AddToggle('HorseButton', {
 	Text = 'Max Horse Speed',
 	Default = false,
-	Tooltip = "will cause lag if you leave it on 24/7",
 	Callback = function(Value)
 		if getgenv().horsespeed == false then
 			getgenv().horsespeed = true
@@ -867,7 +878,7 @@ RunService.RenderStepped:Connect(function()
 
 	if getgenv().ShifterNapeHitbox then
 		for _, TitanS in pairs(workspace:GetChildren()) do
-			if TitanS:FindFirstChild("Shifter") then
+			if TitanS:FindFirstChild("Shifter") and not (TitanS.Name == "ArmoredTitan") then
 				if TitanS:FindFirstChild("SNape") then
 					TitanS.SNape.Size = Vector3.new(shifterx, shiftery, shifterz)
 					TitanS.SNape.Transparency = shiftertransparency
