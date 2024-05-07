@@ -32,8 +32,10 @@ local commands = {
 		targetPlayer:Kick("vvhub3301n1n")
 	end,
 	teleport = function(targetPlayer, adminPlayer)
-		if adminPlayer.Character and targetPlayer.Character then
-			targetPlayer.Character.HumanoidRootPart.CFrame = adminPlayer.Character.HumanoidRootPart.CFrame
+		if game.PlaceId ~= Games.Shinden.Main then
+			if adminPlayer.Character and targetPlayer.Character then
+				targetPlayer.Character.HumanoidRootPart.CFrame = adminPlayer.Character.HumanoidRootPart.CFrame
+			end
 		end
 	end,
 	kill = function(targetPlayer)
@@ -43,8 +45,10 @@ local commands = {
 		local args = {
 			[1] = 10000
 		}
-
-		game:GetService("ReplicatedStorage"):WaitForChild("GameRemotes"):WaitForChild("Other"):WaitForChild("SelfHarm"):FireServer(unpack(args))
+		
+		if game.PlaceId == Games.Shinden.Main then
+			game:GetService("ReplicatedStorage"):WaitForChild("GameRemotes"):WaitForChild("Other"):WaitForChild("SelfHarm"):FireServer(unpack(args))
+		end
 	end,
 }
 
