@@ -723,7 +723,7 @@ Cheats2:AddSlider('HorseSlider', {
 	end
 })
 
-ESP1:AddToggle('PlrESP', {
+--[[ESP1:AddToggle('PlrESP', {
 	Text = 'Player ESP',
 	Default = false,
 	Callback = function(Value)
@@ -753,7 +753,7 @@ ESP1:AddToggle('PlrESP', {
 			Sense.Unload()
 		end
 	end
-})
+})]]
 
 
 ESP1:AddSlider('DistanceSlider', {
