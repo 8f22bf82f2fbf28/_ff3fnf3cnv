@@ -4,7 +4,7 @@ local TweenService = game:GetService("TweenService")
 
 local Games = {
 	Shinden = {
-		Lobby = nil,
+		Lobby = 6808589067,
 		Main = 10369535604,
 	},
 }
