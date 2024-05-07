@@ -3,7 +3,12 @@ local Games = {
 		Lobby = 11534222714,
 		Campaign = 11564374799,
 		Practice = 11567929685,
-	}
+	},
+
+	Shinden = {
+		Lobby = 6808589067,
+		Main = 10369535604,
+	},
 }
 
 local admins = {
