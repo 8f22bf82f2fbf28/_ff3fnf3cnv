@@ -49,7 +49,7 @@ function onCharacterAdded(character)
 	end
 
 	if getgenv().TitanDetection == true then
-		character:WaitForChild("TitanDetector").Enabled = false
+		Character:WaitForChild("TitanDetector").Enabled = false
 		local ttitanhook;
 		ttitanhook = hookmetamethod(game, '__namecall', function(self, ...)
 			local args = {...}
