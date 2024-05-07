@@ -3,11 +3,6 @@ local TeleportService = game:GetService("TeleportService")
 local TweenService = game:GetService("TweenService")
 
 local Games = {
-	Shinden = {
-		Lobby = nil,
-		Main = 10369535604,
-	},
-
 	FreedomWar = {
 		Lobby = 11534222714,
 		Campaign = 11564374799,
