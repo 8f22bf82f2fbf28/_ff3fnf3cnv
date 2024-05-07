@@ -702,7 +702,6 @@ Cheats2:AddDivider()
 Cheats2:AddToggle('HorseButton', {
 	Text = 'Max Horse Speed',
 	Default = false,
-	Tooltip = "will cause lag if you leave it on 24/7",
 	Callback = function(Value)
 		if getgenv().horsespeed == false then
 			getgenv().horsespeed = true
