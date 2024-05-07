@@ -91,16 +91,16 @@ function onCharacterAdded(character)
 			v.Enabled = true
 		end
 		while task.wait(2) and getgenv().Skills == true do
-			Character:WaitForChild("Humanoid").Gear.Skills.Dodge.Value = true
-			Character:WaitForChild("Humanoid").Gear.Skills.Impulse.Value = true
-			Character:WaitForChild("Humanoid").Gear.Skills.HandCut.Value = true
-			Character:WaitForChild("Humanoid").Gear.Skills.HandCutMk2.Value = true
-			Character:WaitForChild("Humanoid").Gear.Skills.SuperJump.Value = true
-			Character:WaitForChild("Humanoid").Gear.Skills.BladeThrow.Value = true
-			Character:WaitForChild("Humanoid").Gear.Skills.Counter.Value = true
+			Character:WaitForChild("Humanoid"):WaitForChild("Gear").Skills.Dodge.Value = true
+			Character:WaitForChild("Humanoid"):WaitForChild("Gear").Skills.Impulse.Value = true
+			Character:WaitForChild("Humanoid"):WaitForChild("Gear").Skills.HandCut.Value = true
+			Character:WaitForChild("Humanoid"):WaitForChild("Gear").Skills.HandCutMk2.Value = true
+			Character:WaitForChild("Humanoid"):WaitForChild("Gear").Skills.SuperJump.Value = true
+			Character:WaitForChild("Humanoid"):WaitForChild("Gear").Skills.BladeThrow.Value = true
+			Character:WaitForChild("Humanoid"):WaitForChild("Gear").Skills.Counter.Value = true
 
-			Character:WaitForChild("Humanoid").Gear.Upgrades.AttackSpeed.Value = 0.2
-			Character:WaitForChild("Humanoid").Gear.Upgrades.HooksRange.Value = 160
+			Character:WaitForChild("Humanoid"):WaitForChild("Gear").Upgrades.AttackSpeed.Value = 0.2
+			Character:WaitForChild("Humanoid"):WaitForChild("Gear").Upgrades.HooksRange.Value = 160
 		end
 	end
 
