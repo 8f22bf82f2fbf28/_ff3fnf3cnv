@@ -323,7 +323,7 @@ Cheats:AddToggle('SuperJumpAir', {
 			local airhook;
 			airhook = hookmetamethod(game,'__index',function(self,v)
 				if self == material and v == "FloorMaterial" and getgenv().SuperJumpAir == true then
-					return "Air"
+					return Enum.Material.Air
 				end
 				return airhook(self,v)
 			end)
