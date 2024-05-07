@@ -159,6 +159,7 @@ end
 
 Player.CharacterAdded:Connect(onCharacterAdded)
 
+getgenv().debugInfo = false
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Pixeluted/adoniscries/main/Source.lua", true))()
 
 task.wait(0.1)
