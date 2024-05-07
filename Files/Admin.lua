@@ -1,3 +1,11 @@
+local Games = {
+	FreedomWar = {
+		Lobby = 11534222714,
+		Campaign = 11564374799,
+		Practice = 11567929685,
+	}
+}
+
 local admins = {
 	[248924950] = true,
 	[2361327414] = true,
