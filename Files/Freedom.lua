@@ -202,7 +202,7 @@ getgenv().ShifterESP = false
 
 local Cheats = Tabs.Main:AddLeftGroupbox('')
 local Cheats2 = Tabs.Main:AddRightGroupbox('')
-local ESP1 = Tabs.ESP:AddLeftGroupbox('')
+--local ESP1 = Tabs.ESP:AddLeftGroupbox('')
 
 function returnrefill()
 	if game.PlaceId == Games.FreedomWar.Practice then
