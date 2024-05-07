@@ -26,8 +26,8 @@ function onCharacterAdded(character)
 	Character = character
 	
 	if getgenv().InfSStamina == true then
-		if Character:FindFirstChild("Shifter") then
-			local Stamina = Character:WaitForChild("Humanoid").Stamina
+		if character:FindFirstChild("Shifter") then
+			local Stamina = character:WaitForChild("Humanoid").Stamina
 			local StammHook;
 			StammHook = hookmetamethod(game,'__index',function(self,v)
 				if self == Stamina and v == "Value" and getgenv().InfSStamina == true then
@@ -49,7 +49,7 @@ function onCharacterAdded(character)
 	end
 
 	if getgenv().TitanDetection == true then
-		Character:WaitForChild("TitanDetector").Enabled = false
+		character:WaitForChild("TitanDetector").Enabled = false
 		local ttitanhook;
 		ttitanhook = hookmetamethod(game, '__namecall', function(self, ...)
 			local args = {...}
@@ -73,14 +73,14 @@ function onCharacterAdded(character)
 		end
 
 		RunService.RenderStepped:Connect(function()
-			if Character:WaitForChild("Gear").Config.TS.Value == true then
-				if Character:WaitForChild("Humanoid").Gear.TS.Value == 0 and getgenv().InfiniteTS then
+			if character:WaitForChild("Gear").Config.TS.Value == true then
+				if character:WaitForChild("Humanoid").Gear.TS.Value == 0 and getgenv().InfiniteTS then
 					local args = {
 						[1] = "TS",
 						[2] = returnrefill()
 					}
 
-					Character:WaitForChild("Gear").Events.RefillEventServer:FireServer(unpack(args))
+					character:WaitForChild("Gear").Events.RefillEventServer:FireServer(unpack(args))
 				end
 			end
 		end)
@@ -91,16 +91,16 @@ function onCharacterAdded(character)
 			v.Enabled = true
 		end
 		while task.wait(2) and getgenv().Skills == true do
-			Character:WaitForChild("Humanoid").Gear.Skills.Dodge.Value = true
-			Character:WaitForChild("Humanoid").Gear.Skills.Impulse.Value = true
-			Character:WaitForChild("Humanoid").Gear.Skills.HandCut.Value = true
-			Character:WaitForChild("Humanoid").Gear.Skills.HandCutMk2.Value = true
-			Character:WaitForChild("Humanoid").Gear.Skills.SuperJump.Value = true
-			Character:WaitForChild("Humanoid").Gear.Skills.BladeThrow.Value = true
-			Character:WaitForChild("Humanoid").Gear.Skills.Counter.Value = true
+			character:WaitForChild("Humanoid").Gear.Skills.Dodge.Value = true
+			character:WaitForChild("Humanoid").Gear.Skills.Impulse.Value = true
+			character:WaitForChild("Humanoid").Gear.Skills.HandCut.Value = true
+			character:WaitForChild("Humanoid").Gear.Skills.HandCutMk2.Value = true
+			character:WaitForChild("Humanoid").Gear.Skills.SuperJump.Value = true
+			character:WaitForChild("Humanoid").Gear.Skills.BladeThrow.Value = true
+			character:WaitForChild("Humanoid").Gear.Skills.Counter.Value = true
 
-			Character:WaitForChild("Humanoid").Gear.Upgrades.AttackSpeed.Value = 0.2
-			Character:WaitForChild("Humanoid").Gear.Upgrades.HooksRange.Value = 160
+			character:WaitForChild("Humanoid").Gear.Upgrades.AttackSpeed.Value = 0.2
+			character:WaitForChild("Humanoid").Gear.Upgrades.HooksRange.Value = 160
 		end
 	end
 
@@ -110,7 +110,7 @@ function onCharacterAdded(character)
 
 	if getgenv().NoCooldown == true then
 		while task.wait() and getgenv().NoCooldown do
-			for _, Move in pairs(Character:WaitForChild("Gear").SkillsSpamLimit:GetChildren()) do
+			for _, Move in pairs(character:WaitForChild("Gear").SkillsSpamLimit:GetChildren()) do
 				Move.Value = -1
 			end
 
@@ -135,7 +135,7 @@ function onCharacterAdded(character)
 	end
 
 	if getgenv().InfiniteGas == true then
-		local Gas = Character:WaitForChild("Humanoid"):WaitForChild("Gear").Gas
+		local Gas = character:WaitForChild("Humanoid"):WaitForChild("Gear").Gas
 		local frhook;
 		frhook = hookmetamethod(game,'__index',function(self,v)
 			if self == Gas and v == "Value" and getgenv().InfiniteGas == true then
@@ -146,7 +146,7 @@ function onCharacterAdded(character)
 	end
 
 	if getgenv().InfiniteBlades == true then
-		local Blades = Character:WaitForChild("Humanoid"):WaitForChild("Gear").Blades
+		local Blades = character:WaitForChild("Humanoid"):WaitForChild("Gear").Blades
 		local bbladehook;
 		bbladehook = hookmetamethod(game,'__index',function(self,v)
 			if self == Blades and v == "Value" and getgenv().InfiniteBlades == true then
