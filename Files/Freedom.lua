@@ -319,14 +319,10 @@ Cheats:AddToggle('SuperJumpAir', {
 	Callback = function(Value)
 		if getgenv().SuperJumpAir == false then
 			getgenv().SuperJumpAir = true
-			local material = Character:WaitForChild("Humanoid")
-			local airhook;
-			airhook = hookmetamethod(game,'__index',function(self,v)
-				if self == material and v == "FloorMaterial" and getgenv().SuperJumpAir == true then
-					return Enum.Material.Air
-				end
-				return airhook(self,v)
-			end)
+			local material = Character:WaitForChild("Humanoid").FloorMaterial
+			while task.wait() and getgenv().SuperJumpAir do
+				material = Enum.Material.Air
+			end
 		elseif getgenv().SuperJumpAir == true then
 			getgenv().SuperJumpAir = false
 		end
