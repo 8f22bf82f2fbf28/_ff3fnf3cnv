@@ -159,7 +159,6 @@ end
 
 Player.CharacterAdded:Connect(onCharacterAdded)
 
-getgenv().debugInfo = false
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Pixeluted/adoniscries/main/Source.lua", true))()
 
 task.wait(0.1)
@@ -520,11 +519,15 @@ Cheats:AddButton({
 Cheats:AddButton({
 	Text = 'Reset God Mode',
 	Func = function()
-		local Granada = game:GetService("ReplicatedStorage").BuyEvent:FireServer('Granada',100)
-		
-		repeat task.wait() until Player.Backpack:FindFirstChild("Granada")
-		
-		Player.Backpack:WaitForChild('Granada').Eat:FireServer()
+		if Player.Backpack:FindFirstChild("Granada") then
+			Player.Backpack:FindFirstChild("Granada").Eat:FireServer()
+		elseif not Player.Backpack:FindFirstChild("Granada") then
+			local Granada = game:GetService("ReplicatedStorage").BuyEvent:FireServer('Granada',100)
+
+			repeat task.wait() until Player.Backpack:FindFirstChild("Granada")
+
+			Player.Backpack:WaitForChild('Granada').Eat:FireServer()
+		end
 	end,
 	DoubleClick = false,
 })
