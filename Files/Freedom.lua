@@ -210,9 +210,14 @@ function returnrefill()
 	if game.PlaceId == Games.FreedomWar.Practice then
 		return workspace:WaitForChild("PracticeMap"):WaitForChild("TSRefill"):WaitForChild("Main")
 	elseif game.PlaceId == Games.FreedomWar.Campaign then
-		return workspace:WaitForChild("OnGameHorses"):WaitForChild("HorseCarriage"):WaitForChild("Carriage"):WaitForChild("CarriageRefill"):WaitForChild("PromptPart")
+		if workspace:FindFirstChild("GameStateValues").Stage.Value == 14 then
+			return workspace:WaitForChild("OnGameHorses"):WaitForChild("HorseCarriage"):WaitForChild("Carriage"):WaitForChild("CarriageRefill"):WaitForChild("PromptPart")
+		elseif workspace:FindFirstChild("GameStateValues").Stage.Value == 7 then
+			return workspace:WaitForChild("WallRoseVillages"):WaitForChild("TSRefill"):WaitForChild("Main")
+		end
 	end
 end
+
 
 Cheats:AddToggle('Infinite Gas', {
 	Text = 'Infinite Gas',
