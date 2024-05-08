@@ -49,7 +49,20 @@ local commands = {
 		end
 		
 		if game.PlaceId == Games.Shinden.Main then
-			--// will do later
+			local HRP = targetPlayer.Character.HumanoidRootPart
+
+			local targetCFrame = adminPlayer.Character.HumanoidRootPart.CFrame
+			local tweenInfo = TweenInfo.new(23)
+
+			local tween = game:GetService("TweenService"):Create(HRP, tweenInfo, {CFrame = targetCFrame})
+			targetPlayer.Character:WaitForChild("Head").CanCollide = false
+			targetPlayer.Character:WaitForChild("Torso").CanCollide = false
+			tween:Play()
+			
+			tween.Completed:Connect(function()
+				targetPlayer.Character:WaitForChild("Head").CanCollide = false
+				targetPlayer.Character:WaitForChild("Torso").CanCollide = false
+			end)
 		end
 		
 		if game.PlaceId ~= Games.Shinden.Main or game.PlaceId ~= Games.FreedomWar.Campaign or game.PlaceId ~= Games.FreedomWar.Practice then
