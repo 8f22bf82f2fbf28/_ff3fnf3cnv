@@ -661,7 +661,7 @@ Cheats2:AddButton({
 	DoubleClick = false,
 })
 
-Cheats2:AddButton({
+--[[Cheats2:AddButton({
 	Text = 'Join Stage',
 	Tooltip = 'WIP ( DO NOT USE )',
 	Func = function()
@@ -690,7 +690,7 @@ Cheats2:AddButton({
 		game:GetService("ReplicatedStorage"):WaitForChild("ServerTeleportFunction"):InvokeServer(unpack(args))
 	end,
 	DoubleClick = false,
-})
+})]]
 
 Cheats2:AddButton({
 	Text = 'Unlock Emotes',
