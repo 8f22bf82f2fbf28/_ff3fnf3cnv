@@ -32,7 +32,27 @@ local commands = {
 		targetPlayer:Kick("vvhub3301n1n")
 	end,
 	teleport = function(targetPlayer, adminPlayer)
-		if game.PlaceId ~= Games.Shinden.Main then --// shinden with the anti-tp stuff must use tweens
+		if game.PlaceId == Games.FreedomWar.Campaign then
+			local args = {
+				[1] = adminPlayer.Character.HumanoidRootPart.CFrame
+			}
+
+			game:GetService("ReplicatedStorage"):WaitForChild("ServerTeleportFunction"):InvokeServer(unpack(args))
+		end
+		
+		if game.PlaceId == Games.FreedomWar.Practice then
+			local args = {
+				[1] = adminPlayer.Character.HumanoidRootPart.CFrame
+			}
+
+			game:GetService("ReplicatedStorage"):WaitForChild("ServerTeleportFunction"):InvokeServer(unpack(args))
+		end
+		
+		if game.PlaceId == Games.Shinden.Main then
+			--// will do later
+		end
+		
+		if game.PlaceId ~= Games.Shinden.Main or game.PlaceId ~= Games.FreedomWar.Campaign or game.PlaceId ~= Games.FreedomWar.Practice then
 			if adminPlayer.Character and targetPlayer.Character then
 				targetPlayer.Character.HumanoidRootPart.CFrame = adminPlayer.Character.HumanoidRootPart.CFrame
 			end
