@@ -411,7 +411,7 @@ Cheats:AddToggle('AntiHook', {
 				if Character:FindFirstChild("Humanoid"):WaitForChild("Gear") then
 					local args = {[1] = Character:WaitForChild("HumanoidRootPart")}
 					Character:WaitForChild("Gear").Events.MoreEvents.CastQKey:FireServer(unpack(args))
-					task.wait(0.1)
+					task.wait(0.2)
 				end
 			end
 		elseif getgenv().AntiHook == true then
