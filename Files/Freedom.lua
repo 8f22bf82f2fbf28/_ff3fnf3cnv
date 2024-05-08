@@ -677,13 +677,11 @@ Cheats2:AddButton({
 		
 		workspace.Camera.CameraType = Enum.CameraType.Custom
 		
-		for _, UI in pairs(Player.PlayerGui:WaitForChild("LobbyGui").LobbyScreen) do
+		for _, UI in pairs(Player.PlayerGui:WaitForChild("LobbyGui").LobbyScreen:GetChildren()) do
 			UI.Visible = false
 		end
 		
 		Player.PlayerGui:WaitForChild("Status").Bottom.Visible = false
-		
-		task.wait(1)
 		
 		local args = {
 			[1] = Spawnpoint()
