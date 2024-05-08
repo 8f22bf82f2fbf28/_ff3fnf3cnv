@@ -380,6 +380,18 @@ Cheats:AddToggle('NoCooldown', {
 	end
 })
 
+Cheats:AddToggle('AntiHook', {
+	Text = 'Anti Hook',
+	Default = false,
+	Callback = function(Value)
+		if getgenv().AntiHook == false then
+			getgenv().AntiHook = true
+		elseif getgenv().AntiHook == true then
+			getgenv().AntiHook = false
+		end
+	end
+})
+
 Cheats:AddDivider()
 
 Cheats:AddToggle('MindlessNape', {
@@ -877,6 +889,13 @@ RunService.RenderStepped:Connect(function()
 			if Horse:IsA("IntValue") and Horse.Name == "MaxSpeed" then
 				Horse.Value = horsespeed
 			end
+		end
+	end
+	
+	if getgenv().AntiHook then
+		if Character:FindFirstChild("Humanoid"):WaitForChild("Gear") then
+			local args = {[1] = Character:WaitForChild("HumanoidRootPart")}
+			Character:WaitForChild("Gear").Events.MoreEvents.CastQKey:FireServer(unpack(args))
 		end
 	end
 
