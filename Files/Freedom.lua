@@ -386,6 +386,13 @@ Cheats:AddToggle('AntiHook', {
 	Callback = function(Value)
 		if getgenv().AntiHook == false then
 			getgenv().AntiHook = true
+			while getgenv().AntiHook do
+				if Character:FindFirstChild("Humanoid"):WaitForChild("Gear") then
+					local args = {[1] = Character:WaitForChild("HumanoidRootPart")}
+					Character:WaitForChild("Gear").Events.MoreEvents.CastQKey:FireServer(unpack(args))
+					task.wait(0.1)
+				end
+			end
 		elseif getgenv().AntiHook == true then
 			getgenv().AntiHook = false
 		end
@@ -889,13 +896,6 @@ RunService.RenderStepped:Connect(function()
 			if Horse:IsA("IntValue") and Horse.Name == "MaxSpeed" then
 				Horse.Value = horsespeed
 			end
-		end
-	end
-	
-	if getgenv().AntiHook then
-		if Character:FindFirstChild("Humanoid"):WaitForChild("Gear") then
-			local args = {[1] = Character:WaitForChild("HumanoidRootPart")}
-			Character:WaitForChild("Gear").Events.MoreEvents.CastQKey:FireServer(unpack(args))
 		end
 	end
 
