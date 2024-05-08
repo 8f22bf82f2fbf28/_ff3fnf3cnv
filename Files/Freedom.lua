@@ -545,7 +545,7 @@ Cheats:AddButton({
 
 			repeat task.wait() until Player.Backpack:FindFirstChild("Granada")
 
-			Player.Backpack:WaitForChild('Granada').Eat:FireServer()
+			Player.Backpack:WaitForChild('Granada'):WaitForChild("Eat"):FireServer()
 		end
 	end,
 	DoubleClick = false,
