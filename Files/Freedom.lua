@@ -391,6 +391,8 @@ Cheats:AddToggle('AntiHook', {
 					local args = {[1] = Character:WaitForChild("HumanoidRootPart")}
 					Character:WaitForChild("Gear").Events.MoreEvents.CastQKey:FireServer(unpack(args))
 					task.wait(0.1)
+					Character:WaitForChild("Gear").Events.MoreEvents.NoQKey:FireServer()
+					task.wait(0.1)
 				end
 			end
 		elseif getgenv().AntiHook == true then
@@ -545,7 +547,7 @@ Cheats:AddButton({
 
 			repeat task.wait() until Player.Backpack:FindFirstChild("Granada")
 
-			Player.Backpack:WaitForChild('Granada'):WaitForChild("Eat"):FireServer()
+			Player.Backpack:WaitForChild('Granada').Eat:FireServer()
 		end
 	end,
 	DoubleClick = false,
