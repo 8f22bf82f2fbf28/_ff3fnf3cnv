@@ -24,7 +24,7 @@ local Character = Player.Character or Player.CharacterAdded:Wait()
 function onCharacterAdded(character)
 	Character = character
 
-	if game.PlaceId == 10369535604 then
+	if game.PlaceId == Games.Shinden.Main then
 		if getgenv().BodyFlicker == true and not Character:FindFirstChild("BodyFlicker") then
 			local BodyFlicker = Instance.new("StringValue", Character)
 			BodyFlicker.Name = "BodyFlicker"
