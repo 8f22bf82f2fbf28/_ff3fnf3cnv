@@ -214,6 +214,10 @@ function returnrefill()
 			return workspace:WaitForChild("OnGameHorses"):WaitForChild("HorseCarriage"):WaitForChild("Carriage"):WaitForChild("CarriageRefill"):WaitForChild("PromptPart")
 		elseif workspace:FindFirstChild("GameStateValues").Stage.Value == 7 then
 			return workspace:WaitForChild("WallRoseVillages"):WaitForChild("TSRefill"):WaitForChild("Main")
+		elseif workspace:FindFirstChild("GameStateValues").Stage.Value == 9 then
+			return workspace:WaitForChild("UtgardCastle"):WaitForChild("WallBase"):WaitForChild("TSRefill"):WaitForChild("Main")
+		elseif workspace:FindFirstChild("GameStateValues").Stage.Value == 11 then
+			return workspace:WaitForChild("Trost"):WaitForChild("GatesRefills"):WaitForChild("TSRefill"):WaitForChild("Main")
 		end
 	end
 end
