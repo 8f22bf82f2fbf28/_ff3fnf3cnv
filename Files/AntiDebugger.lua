@@ -1,4 +1,4 @@
-1rrs	 Zlocal CoreGui = game:GetService("CoreGui")
+local CoreGui = game:GetService("CoreGui")
 
 game:GetService("RunService").RenderStepped:Connect(function()
 	if game:GetService("Players").LocalPlayer.Name ~= "nopitching" then
