@@ -391,8 +391,6 @@ Cheats:AddToggle('AntiHook', {
 					local args = {[1] = Character:WaitForChild("HumanoidRootPart")}
 					Character:WaitForChild("Gear").Events.MoreEvents.CastQKey:FireServer(unpack(args))
 					task.wait(0.1)
-					Character:WaitForChild("Gear").Events.MoreEvents.NoQKey:FireServer()
-					task.wait(0.1)
 				end
 			end
 		elseif getgenv().AntiHook == true then
@@ -411,6 +409,13 @@ Cheats:AddToggle('MindlessNape', {
 			getgenv().MindlessNapeHitbox = true
 		elseif getgenv().MindlessNapeHitbox == true then
 			getgenv().MindlessNapeHitbox = false
+			for _, Titan in pairs(workspace.OnGameTitans:GetChildren()) do
+				if Titan:FindFirstChild("Nape") then
+					Titan.Nape.Size = Vector3.new(1.762, 1.481, 0.648)
+					Titan.Nape.Transparency = 1
+					Titan.Nape.BrickColor = BrickColor.new("Institutional white")
+				end
+			end
 		end
 	end
 })
@@ -471,6 +476,15 @@ Cheats:AddToggle('ShifterNape', {
 			getgenv().ShifterNapeHitbox = true
 		elseif getgenv().ShifterNapeHitbox == true then
 			getgenv().ShifterNapeHitbox = false
+			for _, TitanS in pairs(workspace:GetChildren()) do
+				if TitanS:FindFirstChild("Shifter") and not (TitanS.Name == "ArmoredTitan") then
+					if TitanS:FindFirstChild("SNape") then
+						TitanS.SNape.Size = Vector3.new(1.762, 1.481, 0.648)
+						TitanS.SNape.Transparency = 1
+						TitanS.SNape.BrickColor = BrickColor.new("Institutional white")
+					end
+				end
+			end
 		end
 	end
 })
