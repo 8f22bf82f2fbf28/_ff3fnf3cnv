@@ -588,6 +588,25 @@ Cheats:AddButton({
 	DoubleClick = false,
 })
 
+Cheats:AddButton({
+	Text = 'Spoof Death',
+	Tooltip = 'only use if your spawned in, this makes you look like your dead on the leaderboard',
+	Func = function()
+		local args = {
+			[1] = -math.huge
+		}
+
+		workspace:WaitForChild("HumanEvents"):WaitForChild("DamageEvent"):FireServer(unpack(args))
+		task.wait(0.5)
+		local args = {
+			[1] = math.huge
+		}
+
+		workspace:WaitForChild("HumanEvents"):WaitForChild("DamageEvent"):FireServer(unpack(args))
+	end,
+	DoubleClick = false,
+})
+
 Cheats:AddLabel('Regenerate Health'):AddKeyPicker('KeyPicker', {
 	Default = 'U',
 	SyncToggleState = false,
