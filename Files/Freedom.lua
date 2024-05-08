@@ -66,7 +66,7 @@ function onCharacterAdded(character)
 	if not Character:FindFirstChild("Shifter") then
 		if getgenv().NoCooldown == true then
 			while task.wait() and getgenv().NoCooldown do
-				for _, Move in pairs(Character:WaitForChild("Humanoid"):WaitForChild("Gear").SkillsSpamLimit:GetChildren()) do
+				for _, Move in pairs(Character:WaitForChild("Gear").SkillsSpamLimit:GetChildren()) do
 					Move.Value = -1
 				end
 
