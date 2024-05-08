@@ -662,6 +662,39 @@ Cheats2:AddButton({
 })
 
 Cheats2:AddButton({
+	Text = 'Join Stage',
+	Tooltip = 'WIP ( DO NOT USE )',
+	Func = function()
+		local function Spawnpoint()
+			if workspace:FindFirstChild("GameStateValues").Stage.Value == 1 then
+				return workspace:WaitForChild("Shiganshina").Castle["LC-HQ"].Model.BigDetailedDoor
+			elseif workspace:FindFirstChild("GameStateValues").Stage.Value == 2 then
+				return workspace.Shiganshina.Castle["LC-HQ"].Model:GetChildren()[158].Nails
+			elseif workspace:FindFirstChild("GameStateValues").Stage.Value == 3 then
+				return workspace.Trost.Castle["MC-HQ"].Model:GetChildren()[61].Nails
+			end
+		end
+		
+		workspace.Camera.CameraType = Enum.CameraType.Custom
+		
+		for _, UI in pairs(Player.PlayerGui:WaitForChild("LobbyGui").LobbyScreen) do
+			UI.Visible = false
+		end
+		
+		Player.PlayerGui:WaitForChild("Status").Bottom.Visible = false
+		
+		task.wait(1)
+		
+		local args = {
+			[1] = Spawnpoint()
+		}
+
+		game:GetService("ReplicatedStorage"):WaitForChild("ServerTeleportFunction"):InvokeServer(unpack(args))
+	end,
+	DoubleClick = false,
+})
+
+Cheats2:AddButton({
 	Text = 'Unlock Emotes',
 	Func = function()
 		workspace.PlayersDataFolder:FindFirstChild(Player.Name).OneArmPushUp.Value = 1
@@ -676,7 +709,7 @@ Cheats2:AddButton({
 	Text = 'Gas Remover',
 	Tooltip = 'click this then go to a cart and the cart will have no more gas ( also turn off inf gas )',
 	Func = function()
-		Character:WaitForChild("Humanoid").Gear.Gas.Value = -100000
+		Character:WaitForChild("Humanoid"):WaitForChild("Gear").Gas.Value = -100000
 	end,
 	DoubleClick = false,
 })
@@ -770,6 +803,8 @@ Cheats2:AddToggle('NoCDShifter', {
 							Move.Cooldown.Value = 500
 						elseif Move.Name == "HighSpeed" then
 							Move.Cooldown.Value = 1000
+						elseif Move.Name == "Charge" then
+							Move.Cooldown.Value = 100
 						end
 					end
 				end
