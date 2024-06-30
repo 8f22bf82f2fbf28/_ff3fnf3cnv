@@ -41,7 +41,6 @@ local Window = Library:CreateWindow({
 
 local Tabs = {
 	Main = Window:AddTab('Main'),
-	ESP = Window:AddTab('ESP'),
 	['UI Settings'] = Window:AddTab('UI Settings'),
 }
 
